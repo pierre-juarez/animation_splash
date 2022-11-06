@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  splashAnimation
 //
-//  Created by Tech Fitco on 5/11/22.
+//  Created by Pierre Juarez U. on 5/11/22.
 //
 
 import SwiftUI
