@@ -37,6 +37,7 @@ struct splashScreen: View {
           animatedView(show: $show)
           // Default frame
             .frame(height: UIScreen.main.bounds.height / 2)
+            .padding(.bottom,-35)
           
           VStack{
             HStack{
@@ -69,12 +70,82 @@ struct splashScreen: View {
                 .background(Color("background_color"))
               
             }.padding(.vertical)
+            
+            Button(action: {}, label: {
+              Text("Verify your number")
+                .bold()
+                .foregroundColor(.white)
+                .padding(.vertical,10)
+                .frame(width: UIScreen.main.bounds.width - 60)
+                .background(Color("background_color"))
+                .clipShape(Capsule())
+            })
+            
+            HStack{
+              Rectangle()
+                .fill(.black.opacity(0.3))
+                .frame(height: 1)
+              
+              Text("OR")
+                .bold()
+                .foregroundColor(.black.opacity(0.3))
+              
+              Rectangle()
+                .fill(.black.opacity(0.3))
+                .frame(height: 1)
+            }.padding(.vertical)
+            
+            HStack(spacing: 20){
+              
+              Button(action: {}, label: {
+              
+                HStack(spacing: 10){
+                  
+                  Image("facebook_logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 25, height: 25)
+                  
+                  Text("Facebook")
+                    .bold()
+                    .foregroundColor(.white)
+                }
+                .padding(.vertical,10)
+                .frame(width: (UIScreen.main.bounds.width - 80) / 2 )
+                .background(Color("facebook_color"))
+                .clipShape(Capsule())
+              })
+              
+              Button(action: {}, label: {
+              
+                HStack(spacing: 10){
+                  
+                  Image("google_logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 25, height: 25)
+                  
+                  Text("Google")
+                    .bold()
+                    .foregroundColor(.white)
+                }
+                .padding(.vertical,10)
+                .frame(width: (UIScreen.main.bounds.width - 80) / 2 )
+                .background(Color("google_color"))
+                .clipShape(Capsule())
+              })
+              
+            }
           
           }
           .padding()
           .background(.white)
           .cornerRadius(20)
           .padding()
+          // Botom to up transition
+          // We can acheive this by frame property...
+          .frame(height: show ? nil : 0)
+          .opacity(show ? 1 : 0)
           
         }
         
