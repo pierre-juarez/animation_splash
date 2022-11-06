@@ -24,12 +24,61 @@ struct splashScreen: View {
   
   @State var show = false
   
+  // Login details
+  @State var phNo = ""
+  
   var body: some View {
     VStack{
       ZStack{
-        animatedView(show: $show)        
-      }.background(Color("background_color"))
-        .ignoresSafeArea()
+        Color("background_color")
+          .ignoresSafeArea()
+        
+        VStack{
+          animatedView(show: $show)
+          // Default frame
+            .frame(height: UIScreen.main.bounds.height / 2)
+          
+          VStack{
+            HStack{
+              VStack(alignment: .leading, spacing: 10){
+                Text("Welcome!")
+                  .font(.title)
+                  .bold()
+                  .foregroundColor(.black)
+                
+                Text("Enter your number phone to continue")
+                  .foregroundColor(.gray)
+              }
+              Spacer(minLength: 15)
+            }
+            
+            VStack{
+              
+              HStack(spacing: 15){
+                Text("+51")
+                  .foregroundColor(.black)
+                
+                Rectangle()
+                  .fill(Color("background_color"))
+                  .frame(width: 1, height: 18)
+                
+                TextField("", text: $phNo)
+              }
+              
+              Divider()
+                .background(Color("background_color"))
+              
+            }.padding(.vertical)
+          
+          }
+          .padding()
+          .background(.white)
+          .cornerRadius(20)
+          .padding()
+          
+        }
+        
+      }
     }
   }
   
@@ -47,7 +96,7 @@ struct animatedView: UIViewRepresentable {
     let viewAnimation = LottieAnimationView(name: "splash.json", bundle: Bundle.main)
     viewAnimation.contentMode = .scaleAspectFit
     
-    viewAnimation.frame = CGRect(x: 0, y: (viewAnimation.frame.size.height / 2) - 50, width: 400, height: 400)
+    viewAnimation.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
     
     view.addSubview(viewAnimation)
 
