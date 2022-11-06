@@ -1,0 +1,6 @@
+framework module Pods_splashAnimation {
+  umbrella header "Pods-splashAnimation-umbrella.h"
+
+  export *
+  module * { export * }
+}
