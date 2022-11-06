@@ -22,9 +22,14 @@ struct ContentView_Previews: PreviewProvider {
 
 struct splashScreen: View {
   
+  @State var show = false
+  
   var body: some View {
     VStack{
-      animatedView()
+      ZStack{
+        animatedView(show: $show)        
+      }.background(Color("background_color"))
+        .ignoresSafeArea()
     }
   }
   
@@ -32,6 +37,9 @@ struct splashScreen: View {
 
 // Animated view
 struct animatedView: UIViewRepresentable {
+  
+  @Binding var show: Bool
+  
   func makeUIView(context: Context) -> UIView {
     
     let view = UIView()
@@ -43,7 +51,15 @@ struct animatedView: UIViewRepresentable {
     
     view.addSubview(viewAnimation)
 
-    viewAnimation.play()
+    viewAnimation.play{ (status) in
+      if status {
+        // Toggling view
+        withAnimation(.interactiveSpring(response: 0.7, dampingFraction: 0.8, blendDuration: 0.7)){
+          show.toggle()
+        }
+        
+      }
+    }
     
     return view
   }
